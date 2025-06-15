@@ -41,26 +41,26 @@ app.post("/api/compress", upload.single("image"), async (req, res) => {
 });
 
 // Logging function (write to logs.json)
-function logCompression(ip, filename, originalSize, compressedSize) {
-  const logEntry = {
-    time: new Date().toISOString(),
-    ip,
-    filename,
-    originalSize,
-    compressedSize,
-    reductionPercent: (((originalSize - compressedSize) / originalSize) * 100).toFixed(2),
-  };
+// function logCompression(ip, filename, originalSize, compressedSize) {
+//   const logEntry = {
+//     time: new Date().toISOString(),
+//     ip,
+//     filename,
+//     originalSize,
+//     compressedSize,
+//     reductionPercent: (((originalSize - compressedSize) / originalSize) * 100).toFixed(2),
+//   };
 
-  const logFile = path.join(__dirname, "logs.json");
-  let logs = [];
-  if (fs.existsSync(logFile)) {
-    try {
-      logs = JSON.parse(fs.readFileSync(logFile));
-    } catch {}
-  }
-  logs.push(logEntry);
-  fs.writeFileSync(logFile, JSON.stringify(logs, null, 2));
-}
+//   const logFile = path.join(__dirname, "logs.json");
+//   let logs = [];
+//   if (fs.existsSync(logFile)) {
+//     try {
+//       logs = JSON.parse(fs.readFileSync(logFile));
+//     } catch {}
+//   }
+//   logs.push(logEntry);
+//   fs.writeFileSync(logFile, JSON.stringify(logs, null, 2));
+// }
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
